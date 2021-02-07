@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRB;
     private int jumpPow = 1250;
     private float gravityPow = 2.75f;
-    // private bool onGround = true;
+    public bool isOnGround = true;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
 
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isOnGround)
         {
             PlayerJump();
         }
@@ -30,5 +30,11 @@ public class PlayerController : MonoBehaviour
     void PlayerJump()
     {
         playerRB.AddForce(Vector3.up * jumpPow, ForceMode.Impulse);
+        isOnGround = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        isOnGround = true;
     }
 }
