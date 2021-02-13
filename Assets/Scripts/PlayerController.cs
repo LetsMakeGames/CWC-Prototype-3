@@ -75,7 +75,11 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
-            dirtParticle.Play();
+            if (!gameOver)
+            {
+                dirtParticle.Play();
+            }
+
         } else if (collision.gameObject.CompareTag("Obstacle"))
         {
             // Set player animator variables for transitioning to death animation
