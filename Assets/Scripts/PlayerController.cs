@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     public AudioSource footStep;
     public AudioSource impact;
     public AudioSource deathSound;
+    public AudioSource jumpSound;
+
     private AudioSource bgmAudioSource;
 
     // Start is called before the first frame update
@@ -59,6 +61,7 @@ public class PlayerController : MonoBehaviour
         // Set animator trigger for jump animation transition
         playerAnim.SetTrigger("Jump_trig");
         dirtParticle.Stop();
+        jumpSound.Play();
 
         // User AddForce to jump using physics vs translation.
         playerRB.AddForce(Vector3.up * jumpPow, ForceMode.Impulse);
